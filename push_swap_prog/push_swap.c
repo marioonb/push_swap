@@ -1,24 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/29 12:26:08 by mbelorge          #+#    #+#             */
+/*   Updated: 2021/04/04 12:27:41 by mbelorge         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 #include "../include/all.h"
 
-int		ft_lstsize(t_list *lst)
+int			reverse_sort(t_list **list)
 {
-	int i;
-
-	i = 0;
-	if (!lst)
-		return (0);
-	while (lst)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
-
-int reverse_sort(t_list **list)
-{
-	t_list *a;
+	t_list	*a;
 
 	a = (*list);
 	while (a && a->next)
@@ -30,26 +27,9 @@ int reverse_sort(t_list **list)
 	return (1);
 }
 
-void		affiche_2(t_list *list, t_list* l2)
-{
-	dprintf(1, "\nA = ");
-	while (list)
-	{
-		dprintf(1, " %d ", list->nb);
-		list = list->next;
-	}
-	dprintf(1, "\nB = ");
-	while (l2)
-	{
-		dprintf(1, " %d ", l2->nb);
-		l2 = l2->next;
-	}
-	dprintf(1,"\n\n");
-}
-
 int			check_sort_stack(t_list **lista)
 {
-	t_list *a;
+	t_list	*a;
 
 	a = (*lista);
 	while (a && a->next)
@@ -61,42 +41,35 @@ int			check_sort_stack(t_list **lista)
 	return (1);
 }
 
-
-void execute(char *s, t_list **a, t_list **b)
+void		execute(char *s, t_list **a, t_list **b)
 {
 	dprintf(1, "%s\n", s);
-	appli_instruct(s, a , b);
-	if (DEBUG == 1)
+	appli_instruct(s, a, b);
+	if (DEBUG == 1 || g_debug_bonus == 1)
 	{
 		affiche_2((*a), (*b));
 	}
 }
 
-
-
-
-
-
-
-void find_type_sort(t_list **lista, t_list **listb)
+void		find_type_sort(t_list **lista, t_list **listb)
 {
-	int size = ft_lstsize(*lista);
-	//dprintf(1, "la size est de %d\n", size);
+	int		size;
+
+	size = ft_lstsize(*lista);
 	if (size <= 3)
 		algo_for_three(lista, listb);
 	else if (size <= 5)
 		algo_for_five(lista, listb);
 	else if (size <= 100)
-		//printf("il a moins de 100\n");
-		algo_for_hundred(lista, listb);
+		algo_for_hundred(lista, listb, size, 5);
 	else if (size > 100)
-	 	algo_for_more(lista, listb);
-		//printf("il y a moins de 500\n");
-
+		algo_for_hundred(lista, listb, size, 11);
+	if (DEBUG == 1 || g_debug_bonus == 1)
+	{
+		dprintf(1, "YOUPPI !! ---->");
+		affiche_list((*lista));
+	}
 }
-
-
-
 
 int			main(int ac, char **av)
 {
@@ -107,21 +80,23 @@ int			main(int ac, char **av)
 
 	(void)ac;
 	i = 0;
+	g_debug_bonus = 0;
 	lista = NULL;
 	listb = NULL;
 	buffer = NULL;
 	check_error(av);
 	create_list(&lista, av);
-	//create_bloc(lista);
-	if (DEBUG == 1)
+	if (DEBUG == 1 || g_debug_bonus == 1)
 	{
-		dprintf(1, "\nLISTE AVANT DE DEPART \nA = ");
-		affiche_list(lista);
-		dprintf(1, "\nB = ");
-		affiche_list(listb);
-		dprintf(1, "\n");
+		//dprintf(1, "\nLISTE AVANT DE DEPART \nA = ");
+		//affiche_list(lista);
+		//dprintf(1, "\nB = ");
+		//affiche_list(listb);
+		//dprintf(1, "\n");
+		affiche_2(lista, listb);
 	}
-	find_type_sort(&lista, &listb);
-	if (DEBUG == 1)
-		affiche_list(lista);
+	if (!check_sort(lista, listb))
+		find_type_sort(&lista, &listb);
+	//if (DEBUG == 1)
+	//	affiche_list(lista);
 }

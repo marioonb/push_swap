@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo_for_three.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/29 12:26:08 by mbelorge          #+#    #+#             */
+/*   Updated: 2021/04/04 12:27:41 by mbelorge         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 #include "../include/all.h"
 
-void algo_for_three(t_list **l, t_list **lb)
+void		algo_for_three(t_list **l, t_list **lb)
 {
-	t_list *a;
+	t_list	*a;
 
 	a = (*l);
 	while (check_sort_stack(l) != 1)
 	{
-		//dprintf(1, "THREE\n");
 		a = (*l);
 		if (ft_lstsize(a) < 3)
 			execute("sa", l, lb);

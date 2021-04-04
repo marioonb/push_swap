@@ -21,7 +21,6 @@
 # define BUFFER_SIZE 200
 
 
-
 /*
 ** LIBFT
 */
@@ -74,7 +73,7 @@ void		*ft_toomuch_read(char *memory, int i);
 char		*memorywork(char **line, char *memory);
 int			get_next_line(int fd, char **line);
 char		*ft_strstr(char *str, char *to_find);
-
+int			ft_strcmp(char *name, char *value);
 /*
 ** PERSONNELLES
 */
@@ -95,5 +94,6 @@ char		*itoa_base_pointeur (void *p);
 char		**duplicate_tab_char(char **envp);
 void		free_tab_char(char **tab);
 int			lenght_double_tab(char **tab);
+void		ft_read_tab_int(int *bloc, int nb);
 
 #endif

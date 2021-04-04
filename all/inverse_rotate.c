@@ -1,4 +1,15 @@
-#include "../include/checker.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/29 12:26:08 by mbelorge          #+#    #+#             */
+/*   Updated: 2021/04/04 12:27:41 by mbelorge         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/all.h"
 
 /*
@@ -6,12 +17,12 @@
 ** becomes the first one.
 */
 
-void	invers_rotate(t_list **list, char c)
+void		invers_rotate(t_list **list, char c)
 {
-	int val;
-	t_list *new;
+	int		val;
+	t_list	*new;
 
-	if (DEBUG == 1)
+	if (DEBUG == 1 || g_debug_bonus == 1)
 		printf("---------- ***** REVERSE_ROTATE_%c\n", c);
 	new = (*list);
 	while (new && new->next && new->next->next)
@@ -23,15 +34,13 @@ void	invers_rotate(t_list **list, char c)
 		new->next = NULL;
 		push_pile(list, val);
 	}
-
 }
-
 
 /*
 ** call invers_rotate for 2 stack.
 */
 
-void invers_rotate_ab(t_list **lista, t_list **listb)
+void		invers_rotate_ab(t_list **lista, t_list **listb)
 {
 	invers_rotate(lista, 'A');
 	invers_rotate(listb, 'B');

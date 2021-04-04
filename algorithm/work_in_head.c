@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   work_in_head.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,55 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/push_swap.h"
 #include "../include/all.h"
 
-/*
-** take the first element at the top of first pile and put it
-** at the top ofsecond pile. Do nothing if the second pile is empty.
-*/
-
-void		push(t_list **list1, t_list **list2, char c)
+int		max_in_head(t_list *b, int size, int *max)
 {
-	int nb;
+	int	i;
+	int	size2;
+	int	res;
 
-	if (DEBUG == 1 || g_debug_bonus == 1)
-		dprintf(1, "---------- ***** PUSH_%c\n", c);
-	if (*list2)
+	res = 0;
+	*max = b->nb;
+	size2 = size / 2;
+	if (size % 2 != 0)
+		size2++;
+	i = 0;
+	//if (DEBUG == 1)
+	//	dprintf(1, "dans head, size est a %d\n", size2);
+	while (i < size2 && b)
 	{
-		nb = pop_pile(list2);
-		push_pile(list1, nb);
+		if (b->nb > *max)
+		{
+			*max = b->nb;
+			res = i;
+		}
+		b = b->next;
+		i++;
 	}
+	return (res);
+}
+
+int		find_element_bloc_in_head(t_list *a, int nb, int *bloc)
+{
+	int	i;
+	int	compt;
+
+	compt = 1;
+	i = 0;
+	while (a != NULL)
+	{
+		i = 0;
+		while (i < nb)
+		{
+			//dprintf(1, "on compare %d et %d\n", a->nb, bloc[i]);
+			if (a->nb == bloc[i])
+				return (compt);
+			i++;
+		}
+		a = a->next;
+		compt++;
+	}
+	return (-1);
 }

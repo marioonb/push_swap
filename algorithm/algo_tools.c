@@ -1,22 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo_tools.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/29 12:26:08 by mbelorge          #+#    #+#             */
+/*   Updated: 2021/04/04 12:27:41 by mbelorge         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 #include "../include/all.h"
 
-int search_next_min(t_list *list, int index)
+int		*copy_in_tab(t_list *a)
 {
-	int i;
-	int min;
+	int	size;
+	int *tab;
+	int	i;
 
-	//if (list->nb == index)
-	//	min = list->next->nb;
-	//else
-	//	min = list->nb;
+	size = ft_lstsize(a);
+	tab = malloc(sizeof(int) * size);
+	i = size - 1;
+	while (i >= 0)
+	{
+		//dprintf(1, "l element a mettre dans le tableau est %d\n", a->nb);
+		tab[i] = a->nb;
+		//dprintf(1, "tab de size est a %d\n", tab[i]);
+		a = a->next;
+		i--;
+	}
+	//affiche_bloc(tab, size);
+	return (tab);
+}
+
+int		search_next_min(t_list *list, int index)
+{
+	int	i;
+	int	min;
+
 	min = 2147483647;
 	i = 0;
-
 	while (list)
 	{
-		//dprintf(1, "l index est a %d", index);
 		if (list->nb < min && list->nb > index)
 			min = list->nb;
 		list = list->next;
@@ -25,7 +51,7 @@ int search_next_min(t_list *list, int index)
 	return (min);
 }
 
-int is_min (int nb, t_list *list)
+int		is_min(int nb, t_list *list)
 {
 	while (list != NULL)
 	{
@@ -36,7 +62,7 @@ int is_min (int nb, t_list *list)
 	return (1);
 }
 
-int	is_max(int nb, t_list *list)
+int		is_max(int nb, t_list *list)
 {
 	while (list)
 	{
@@ -45,17 +71,15 @@ int	is_max(int nb, t_list *list)
 		list = list->next;
 	}
 	return (1);
-
 }
 
-int search_min(t_list *list)
+int		search_min(t_list *list)
 {
-	int i;
-	int min;
+	int	i;
+	int	min;
 
 	min = list->nb;
 	i = 0;
-
 	//if (!list)
 	//	return (0);
 	while (list)
@@ -66,5 +90,4 @@ int search_min(t_list *list)
 	}
 	//dprintf(1, "le nombre minimin cest %d ", min);
 	return (min);
-
 }
