@@ -26,7 +26,7 @@ RM = rm -f
 OBJS = inverse_rotate.o lib.o push.o rotate.o swap.o lib.o chaine.o \
 linked_list_utils.o linked_list_tools.o parse_utils.o \
 algorithm/algo_tools.o algorithm/algo_for_five.o algorithm/algo_for_three.o \
-algorithm/algo_for_hundred.c
+algorithm/algo_for_hundred.o
 
 LIB = ./libft/libft.a
 

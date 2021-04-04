@@ -179,14 +179,12 @@ int max_in_head(t_list *b)
 
 	max = b->nb;
 	size = ft_lstsize(b);
-	if (size <= 100 && size >= 5)
-		size2 = size / 5;
-	else
-		size2 = 1;
-	if (size % 5 != 0 && size >= 5)
+	size2 = size / 2;
+	if (size % 2 != 0)
 		size2++;
 	i = 0;
-	//dprintf(1, "dans head, size est a %d\n", size2);
+	if(DEBUG == 1)
+		dprintf(1, "dans head, size est a %d\n", size2);
 	while (i < size2 && b)
 	{
 		if (b->nb > max)
@@ -225,20 +223,16 @@ int max_in_queue(t_list *b)
 
 	i = 0;
 	size = ft_lstsize(b);
-	if (size <= 100 && size >= 5)
-		size2 = size / 5;
-	else
-		size2 = 1;
-	if (size % 5 != 0 && size >= 5)
-		size2++;
+	size2 = size / 2;
 	while (size - size2 > i)
 	{
 			b = b->next;
 			i++;
 	}
 	tab = copy_in_tab(b);
-	//dprintf(1, "size2 est a %d\n", size2);
-	//affiche_bloc(tab, size2);
+	if(DEBUG == 1)
+	{dprintf(1, "size2 est a %d\n", size2);
+	affiche_bloc(tab, size2);}
 	size = max_in_queue2(tab, size2);
 	return(size);
 }
@@ -253,18 +247,18 @@ int max_in_head_index(t_list *b)
 
 	res = -1;
 	size = ft_lstsize(b);
-	if (size <= 100 && size >= 5)
-		size2 = size / 5;
-	else
-		size2 = 1;
-	if (size % 5 != 0 && size >= 5)
+	size2 = size / 2;
+	if (size % 2 != 0)
 		size2++;
 	max = b->nb;
 	i = 0;
 	while (i < size2 && b)
 	{
 		if (b->nb >= max)
-			res = i;
+			{
+				max = b->nb;
+				res = i;
+			}
 		b = b->next;
 		i++;
 	}
@@ -283,7 +277,10 @@ int		max_in_queue_index2(int *tab, int t)
 	while (i < t)
 	{
 		if (tab[i] >= max)
-			res = i;
+			{
+				res = i;
+				max = tab[i];
+			}
 		i++;
 	}
 	free(tab);
@@ -299,12 +296,7 @@ int max_in_queue_index(t_list *b)
 
 	i = 0;
 	size = ft_lstsize(b);
-	if (size <= 100 && size >= 5)
-		size2 = size / 5;
-	else
-		size2 = 1;
-	if (size % 2 != 0 && size >= 5)
-		size2++;
+	size2 = size / 2;
 	while (size - size2 > i)
 	{
 			b = b->next;
@@ -327,13 +319,16 @@ void sort_b_for_end(t_list **a, t_list **b)
 	while ((*b) != NULL)
 	{
 		head = max_in_head((*b));
-		//dprintf(1, "element de head le plus grand est  %d\n", head);
+		if(DEBUG == 1)
+		dprintf(1, "element de head le plus grand est  %d\n", head);
 		queue = max_in_queue((*b));
-		//dprintf(1, "element de queue le plus grand est %d\n", queue);
+		if(DEBUG == 1)
+		dprintf(1, "element de queue le plus grand est %d\n", queue);
 		if (head < queue)
 		{
 			queue_index = max_in_queue_index((*b));
-			//dprintf(1, "le plus grand elememt est dans queue, position %d\n", queue_index);
+			if(DEBUG == 1)
+			dprintf(1, "le plus grand elememt est dans queue, position %d\n", queue_index);
 			while (queue_index + 1 > 0)
 			{
 				execute("rrb", a, b);
@@ -344,7 +339,8 @@ void sort_b_for_end(t_list **a, t_list **b)
 		else
 		{
 			head_index = max_in_head_index((*b));
-			//dprintf(1, "le plus grand elememt est dans tete, position %d\n", head_index);
+			if(DEBUG == 1)
+			dprintf(1, "le plus grand elememt est dans tete, position %d\n", head_index);
 			while(head_index > 0)
 			{
 				execute("rb", a, b);
@@ -352,9 +348,11 @@ void sort_b_for_end(t_list **a, t_list **b)
 				head_index--;
 			}
 		}
-		//affiche_2((*a), (*b));
+		if(DEBUG == 1)
+		affiche_2((*a), (*b));
 		execute("pa", a ,b);
-		//affiche_2((*a), (*b));
+		if(DEBUG == 1)
+		affiche_2((*a), (*b));
 	}
 }
 
@@ -365,11 +363,46 @@ void algo_for_hundred(t_list **a, t_list **b)
 	int *bloc;
 	int current;
 	int i = 0;
+	int end = size%5;
 
+	if (size %5)
+		nb += 1;
 	current = -2147483648;
 	//printf("la taille de la chaine est %d\nla taille du bloc est %d\n", size, nb);
 	while (i < 5)
 	{
+		//bloc = malloc(sizeof(int) * nb);
+		if (i == 5 && end != 0)
+			nb = end;
+		bloc = create_bloc((*a), nb, &current);
+		//dprintf(1, "current a apres le premier tableau est :  %d/n", current);
+		//affiche_bloc(bloc, nb);
+		exec_algo_hundred(bloc, a, b, nb);
+		free(bloc);
+		i++;
+	}
+	if(DEBUG == 1)
+		dprintf(1, "--------------------------------------\n               |TRIE B|\n--------------------------------------\n");
+	sort_b_for_end(a, b);
+}
+
+
+void algo_for_more(t_list **a, t_list **b)
+{
+	int size = ft_lstsize((*a));
+	int nb = size / 11;
+	int *bloc;
+	int current;
+	int i = 0;
+	int end = size % 11;
+	if (size % 11)
+		nb += 1;
+	current = -2147483648;
+	//printf("la taille de la chaine est %d\nla taille du bloc est %d\n", size, nb);
+	while (i < 11)
+	{
+		if (i == 11 && end != 0)
+			nb = end;
 		//bloc = malloc(sizeof(int) * nb);
 		bloc = create_bloc((*a), nb, &current);
 		//dprintf(1, "current a apres le premier tableau est :  %d/n", current);

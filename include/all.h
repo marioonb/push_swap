@@ -25,4 +25,5 @@ void				push_pile(t_list **list, int val);
 void				push_pile(t_list **list, int val);
 void				check_error(char **tab);
 void				affiche_2(t_list *list, t_list* l2);
+void				algo_for_more(t_list **a, t_list **b);
 #endif

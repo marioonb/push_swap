@@ -89,10 +89,10 @@ void find_type_sort(t_list **lista, t_list **listb)
 	else if (size <= 100)
 		//printf("il a moins de 100\n");
 		algo_for_hundred(lista, listb);
-	else if (size <= 500)
-		printf("il y a moins de 500\n");
-	else if (size <= 100)
-		printf("il a moins + de 500\n");
+	else if (size > 100)
+	 	algo_for_more(lista, listb);
+		//printf("il y a moins de 500\n");
+
 }
 
 
