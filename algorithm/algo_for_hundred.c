@@ -48,7 +48,7 @@ int find_element_bloc_in_head(t_list *a, int nb, int *bloc)
 		{
 			//dprintf(1, "on compare %d et %d\n", a->nb, bloc[i]);
 			if (a->nb == bloc[i])
-				return(compt);
+					return(compt);
 			i++;
 		}
 		a = a->next;
@@ -72,9 +72,7 @@ int		find_element_bloc_in_queue2(int *tab, int nb, int *bloc, int t)
 		{
 			//dprintf(1, "on compare %d et %d\n", tab[j], bloc[i]);
 			if (tab[j] == bloc[i])
-			{
 				return(compt);
-			}
 			i++;
 		}
 		j++;
@@ -170,15 +168,15 @@ void exec_algo_hundred(int *bloc, t_list **a, t_list **b, int nb)
 	//affiche_2((*a), (*b));
 }
 
-int max_in_head(t_list *b)
+int max_in_head(t_list *b, int size)
 {
 	int i;
-	int size;
+	//int size;
 	int max;
 	int size2;
 
 	max = b->nb;
-	size = ft_lstsize(b);
+	//size = ft_lstsize(b);
 	size2 = size / 2;
 	if (size % 2 != 0)
 		size2++;
@@ -214,15 +212,15 @@ int		max_in_queue2(int *tab, int t)
 	return (max);
 }
 
-int max_in_queue(t_list *b)
+int max_in_queue(t_list *b, int size)
 {
 	int i;
-	int size;
+	//int size;
 	int *tab;
 	int size2;
 
 	i = 0;
-	size = ft_lstsize(b);
+	//size = ft_lstsize(b);
 	size2 = size / 2;
 	while (size - size2 > i)
 	{
@@ -231,22 +229,24 @@ int max_in_queue(t_list *b)
 	}
 	tab = copy_in_tab(b);
 	if(DEBUG == 1)
-	{dprintf(1, "size2 est a %d\n", size2);
-	affiche_bloc(tab, size2);}
+	{
+		dprintf(1, "size2 est a %d\n", size2);
+		affiche_bloc(tab, size2);
+	}
 	size = max_in_queue2(tab, size2);
 	return(size);
 }
 
-int max_in_head_index(t_list *b)
+int max_in_head_index(t_list *b, int size)
 {
 	int i;
-	int size;
+	//int size;
 	int max;
 	int res;
 	int size2;
 
 	res = -1;
-	size = ft_lstsize(b);
+	//size = ft_lstsize(b);
 	size2 = size / 2;
 	if (size % 2 != 0)
 		size2++;
@@ -287,15 +287,15 @@ int		max_in_queue_index2(int *tab, int t)
 	return (res);
 }
 
-int max_in_queue_index(t_list *b)
+int max_in_queue_index(t_list *b, int size)
 {
 	int i;
-	int size;
+	//int size;
 	int *tab;
 	int size2;
 
 	i = 0;
-	size = ft_lstsize(b);
+	//size = ft_lstsize(b);
 	size2 = size / 2;
 	while (size - size2 > i)
 	{
@@ -308,46 +308,54 @@ int max_in_queue_index(t_list *b)
 	return(size);
 }
 
+void sort_b_for_end2(int head, int queue, t_list **a, t_list **b, int size)
+{
+	int queue_index;
+	int head_index;
+
+	if (head < queue)
+	{
+		queue_index = max_in_queue_index((*b), size);
+		if(DEBUG == 1)
+			dprintf(1, "le plus grand elememt est dans queue, position %d\n", queue_index);
+		while (queue_index + 1 > 0)
+		{
+			execute("rrb", a, b);
+			queue_index--;
+		}
+	}
+	else
+	{
+		head_index = max_in_head_index((*b), size);
+		if(DEBUG == 1)
+			dprintf(1, "le plus grand elememt est dans tete, position %d\n", head_index);
+		while(head_index > 0)
+		{
+			execute("rb", a, b);
+			head_index--;
+		}
+	}
+}
+
 
 void sort_b_for_end(t_list **a, t_list **b)
 {
 	int head;
 	int queue;
-	int head_index;
-	int queue_index;
+	int size;
+	//int head_index;
+	//int queue_index;
 
 	while ((*b) != NULL)
 	{
-		head = max_in_head((*b));
+		size = ft_lstsize((*b));
+		head = max_in_head((*b), size);
 		if(DEBUG == 1)
-		dprintf(1, "element de head le plus grand est  %d\n", head);
-		queue = max_in_queue((*b));
+			dprintf(1, "element de head le plus grand est  %d\n", head);
+		queue = max_in_queue((*b), size);
 		if(DEBUG == 1)
-		dprintf(1, "element de queue le plus grand est %d\n", queue);
-		if (head < queue)
-		{
-			queue_index = max_in_queue_index((*b));
-			if(DEBUG == 1)
-			dprintf(1, "le plus grand elememt est dans queue, position %d\n", queue_index);
-			while (queue_index + 1 > 0)
-			{
-				execute("rrb", a, b);
-				//affiche_2((*a), (*b));
-				queue_index--;
-			}
-		}
-		else
-		{
-			head_index = max_in_head_index((*b));
-			if(DEBUG == 1)
-			dprintf(1, "le plus grand elememt est dans tete, position %d\n", head_index);
-			while(head_index > 0)
-			{
-				execute("rb", a, b);
-				//affiche_list((*a));
-				head_index--;
-			}
-		}
+			dprintf(1, "element de queue le plus grand est %d\n", queue);
+		sort_b_for_end2(head, queue, a, b, size);
 		if(DEBUG == 1)
 		affiche_2((*a), (*b));
 		execute("pa", a ,b);
@@ -398,15 +406,11 @@ void algo_for_more(t_list **a, t_list **b)
 	if (size % 11)
 		nb += 1;
 	current = -2147483648;
-	//printf("la taille de la chaine est %d\nla taille du bloc est %d\n", size, nb);
 	while (i < 11)
 	{
 		if (i == 11 && end != 0)
 			nb = end;
-		//bloc = malloc(sizeof(int) * nb);
 		bloc = create_bloc((*a), nb, &current);
-		//dprintf(1, "current a apres le premier tableau est :  %d/n", current);
-		//affiche_bloc(bloc, nb);
 		exec_algo_hundred(bloc, a, b, nb);
 		free(bloc);
 		i++;
