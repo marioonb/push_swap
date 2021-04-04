@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   lenght_double_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/03 16:14:50 by mbelorge          #+#    #+#             */
-/*   Updated: 2020/01/03 16:14:52 by mbelorge         ###   ########.fr       */
+/*   Created: 2021/02/16 12:26:08 by mbelorge          #+#    #+#             */
+/*   Updated: 2021/02/16 12:27:41 by mbelorge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, char *src)
+int	lenght_double_tab(char **tab)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
+	j = 0;
+	while (tab[i] != NULL)
 		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	return (i);
 }

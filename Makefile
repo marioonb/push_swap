@@ -5,6 +5,10 @@ SRCS_SW=	all/linked_list_utils.c \
 			all/push.c \
 			all/rotate.c \
 			all/swap.c \
+			algorithm/algo_tools.c \
+			algorithm/algo_for_five.c \
+			algorithm/algo_for_three.c \
+			algorithm/algo_for_hundred.c
 
 SRCS_CH=	all/inverse_rotate.c \
 			all/push.c \
@@ -20,7 +24,9 @@ FLAGS = -Werror -Wextra -Wall -fsanitize=address -g
 RM = rm -f
 
 OBJS = inverse_rotate.o lib.o push.o rotate.o swap.o lib.o chaine.o \
-linked_list_utils.o linked_list_tools.o parse_utils.o
+linked_list_utils.o linked_list_tools.o parse_utils.o \
+algorithm/algo_tools.o algorithm/algo_for_five.o algorithm/algo_for_three.o \
+algorithm/algo_for_hundred.c
 
 LIB = ./libft/libft.a
 

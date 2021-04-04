@@ -1,6 +1,6 @@
 
 #include "../include/checker.h"
-
+#include "../include/all.h"
 /*
 ** shift up all elements of stack by 1. The first element becomes
 ** the last one.

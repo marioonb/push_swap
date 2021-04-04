@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   duplicate_tab_char.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/03 16:14:50 by mbelorge          #+#    #+#             */
-/*   Updated: 2020/01/03 16:14:52 by mbelorge         ###   ########.fr       */
+/*   Created: 2021/02/16 12:26:08 by mbelorge          #+#    #+#             */
+/*   Updated: 2021/02/16 12:27:41 by mbelorge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dest, char *src)
+char	**duplicate_tab_char(char **envp)
 {
-	int	i;
+	char	**env;
+	int		ligne;
+	int		i;
 
+	env = NULL;
+	//ligne = 3;
+	ligne = 0;
+	while (envp[ligne] != NULL)
+		ligne++;
 	i = 0;
-	while (src[i] != '\0')
+	env = malloc(sizeof(char*) * (ligne + 1));
+	if (!env)
+		return(0);
+	while (i < ligne)
 	{
-		dest[i] = src[i];
+		env[i] = ft_strdup(envp[i]);
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	env[i] = NULL;
+	return (env);
 }

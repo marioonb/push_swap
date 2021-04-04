@@ -32,14 +32,13 @@ char	*ft_itoa(int n)
 
 	i = sizenum(n);
 	nombre = n;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	if (n < 0)
 	{
 		nombre = nombre * -1;
 		i = i + 1;
 	}
-	if (!(chaine = malloc(i + 1)))
+	chaine = malloc(i + 1);
+	if (!chaine)
 		return (0);
 	if (i > 0)
 		chaine[i] = '\0';
@@ -52,3 +51,6 @@ char	*ft_itoa(int n)
 		chaine[0] = '-';
 	return (chaine);
 }
+
+	//if (n == -2147483648)
+	//	return (ft_strdup("-2147483648"));

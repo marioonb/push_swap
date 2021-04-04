@@ -1,4 +1,5 @@
 #include "../include/checker.h"
+#include "../include/all.h"
 
 int check_min_and_max(char *s)
 {

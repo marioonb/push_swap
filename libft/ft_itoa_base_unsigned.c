@@ -1,43 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim_char.c                                  :+:      :+:    :+:   */
+/*   ft_itoa_base_unsigned.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 18:46:36 by mbelorge          #+#    #+#             */
-/*   Updated: 2020/11/24 16:44:55 by mbelorge         ###   ########.fr       */
+/*   Created: 2020/01/03 16:14:02 by mbelorge          #+#    #+#             */
+/*   Updated: 2020/01/03 17:18:25 by mbelorge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim_char(char const *s1, char set)
+static int	convertletter_un(int nb)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
-	size_t	a;
+	if (nb >= 10)
+		return (nb - 10 + 'a');
+	else
+		return (nb + '0');
+}
+
+char	*ft_itoa_base_unsigned(unsigned int value, int base)
+{
+	int				i;
+	char			*str;
+	unsigned int	tmp;
 
 	i = 0;
-	j = 0;
-	a = 0;
-	if (!s1 || !set)
-		return (NULL);
-	while (s1[j])
-		j++;
-	j--;
-	if (s1[i] == set)
+	tmp = value;
+	while (tmp >= (unsigned int)base)
+	{
+		tmp = tmp / base;
 		i++;
-	//if (i == ft_strlen(s1))
-	//	return (ft_calloc(1, sizeof(char)));
-	if (s1[j] == set)
-		j--;
-	str = ft_calloc(sizeof(char) * (j - i + 2), 2);
+	}
+	str = (char *)malloc(sizeof(char) * (i + 2));
 	if (!str)
 		return (NULL);
-	while (i <= j)
-		str[a++] = s1[i++];
-	str[a] = '\0';
-	return ((char *)str);
+	str[i + 1] = '\0';
+	while (i >= 0)
+	{
+		tmp = value % base;
+		str[i] = convertletter_un(tmp);
+		value /= base;
+		i--;
+	}
+	return (str);
 }

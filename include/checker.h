@@ -5,17 +5,8 @@
 #include <limits.h>
 #define INT_MAX_C "2147483647"
 #define INT_MIN_C "-2147483648"
+#include "../include/all.h"
 
-# ifndef DEBUG
-#  define DEBUG 0
-# endif
-
-
-typedef struct		s_list
-{
-	int				nb;
-	struct s_list	*next;
-}					t_list;
 
 void				swap(t_list **list, char s);
 void				swap_ab(t_list **lista, t_list **listb);
@@ -43,4 +34,4 @@ void		appli_instruct(char *line, t_list **lista, t_list **listb);
 int			check_sort(t_list *lista, t_list *listb);
 int			check_min_and_max(char *s);
 int			check_int_type(char *s);
-void		check_error(char **tab);
+

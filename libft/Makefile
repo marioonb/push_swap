@@ -1,7 +1,7 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -18,11 +18,12 @@ ft_calloc.c get_next_line.c ft_itoa_base.c ft_strstr.c ft_strncpy.c \
 ft_strlcpy.c ft_strlcat.c ft_strjoin.c ft_itoa.c ft_strnstr.c ft_split.c \
 ft_substr.c ft_strtrim.c ft_atoi.c ft_isalpha.c ft_isdigit.c ft_itoa.c ft_strrchr.c \
 ft_putchar.c ft_putstr.c ft_strcpy.c ft_isnumber.c ft_power.c mini_printf.c \
-ft_putchar_fd.c ft_putstr_fd.c ft_isalnum.c ft_strcmp.c \
+ft_putchar_fd.c ft_putstr_fd.c ft_isalnum.c mini_printf_fd.c ft_alloc.c \
+ft_read_tab_char.c duplicate_tab_char.c free_tab_char.c lenght_double_tab.c ft_strcmp.c \
 
 BONUS = $(SRC) ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c\
 ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c \
-ft_lstiter_bonus.c  ft_lstmap_bonus.c ft_strcmp.o
+ft_lstiter_bonus.c  ft_lstmap_bonus.c
 
 OBJ = $(subst .c,.o,$(SRC))
 BONUS_OBJ = $(subst .c,.o,$(BONUS))

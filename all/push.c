@@ -1,4 +1,5 @@
 #include "../include/checker.h"
+#include "../include/all.h"
 /*
 ** take the first element at the top of first pile and put it
 ** at the top ofsecond pile. Do nothing if the second pile is empty.

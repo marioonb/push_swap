@@ -1,5 +1,5 @@
 #include "../include/checker.h"
-
+#include "../include/all.h"
 /*
 ** swap the first 2 elements at the top of stack.
 ** Do nothing if there is only one or no elements).

@@ -1,6 +1,6 @@
 
 #include "../include/checker.h"
-
+#include "../include/all.h"
 
 
 int			main(int ac, char **av)

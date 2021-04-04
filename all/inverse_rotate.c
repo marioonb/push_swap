@@ -1,5 +1,5 @@
 #include "../include/checker.h"
-
+#include "../include/all.h"
 
 /*
 ** shift down all elements of stack by 1. The last element

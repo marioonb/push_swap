@@ -37,12 +37,11 @@ static char	*concatene(const char *s1, const char *s2, char *resultat)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*resultat;
+	char	*res;
 
-	resultat = (char*)malloc(sizeof(char) * (ft_strlen(s1)
-	+ ft_strlen(s2) + 1));
-	if (!resultat)
+	res = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!res)
 		return (0);
-	resultat = concatene(s1, s2, resultat);
-	return (resultat);
+	res = concatene(s1, s2, res);
+	return (res);
 }

@@ -1,4 +1,5 @@
 #include "../include/checker.h"
+#include "../include/all.h"
 
 void		affiche_list(t_list *list)
 {

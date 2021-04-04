@@ -37,16 +37,15 @@ static char	*concatene(const char *s1, const char *s2, char *resultat)
 
 char	*ft_strjoinfree(char const *s1, char const *s2)
 {
-	char		*resultat;
+	char		*res;
 
-	resultat = (char*)malloc(sizeof(char) * (ft_strlen(s1)
-		+ ft_strlen(s2) + 1));
-	if (!resultat)
+	res = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!res)
 		return (0);
-	resultat = concatene(s1, s2, resultat);
+	res = concatene(s1, s2, res);
 	if (s1)
 		free((char*)s1);
-	return (resultat);
+	return (res);
 }
 
 void	*ft_toomuch_read(char *memory, int i)
@@ -102,6 +101,13 @@ int	get_next_line(int fd, char **line)
 	if (!memory)
 		memory = (char *)ft_calloc(sizeof(char), 1);
 	buf = (char *)ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	//ret = read(fd, buf, BUFFER_SIZE); //
+	//while (!ft_strchr(buf, '\n') && (ret > 0)) //
+	//{
+	//	buf[ret] = '\0'; //
+	//	memory = ft_strjoinfree(memory, buf); //
+	//	ret = read(fd, buf, BUFFER_SIZE); //
+	//}
 	while (!ft_strchr(buf, '\n') && (ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
