@@ -21,3 +21,11 @@ void	debug_util(t_list *a, t_list *b)
 	dpf(1, "\n"SL"Les deux piles de depart sont :"ST"\n\n");
 	affiche_2(a, b);
 }
+
+void	free_stack(t_list *list)
+{
+	if (list && list->next)
+		free_stack(list->next);
+	if (list != 0)
+		free(list);
+}

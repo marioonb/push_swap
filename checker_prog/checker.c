@@ -13,6 +13,14 @@
 #include "../include/checker.h"
 #include "../include/all.h"
 
+void		free_stack(t_list *list)
+{
+	if (list && list->next)
+		free_stack(list->next);
+	if (list != 0)
+		free(list);
+}
+
 int			main(int ac, char **av)
 {
 	t_list	*lista;
@@ -36,5 +44,7 @@ int			main(int ac, char **av)
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
+	free_stack(lista);
+	free_stack(listb);
 	return (0);
 }

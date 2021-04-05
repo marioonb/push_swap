@@ -65,4 +65,5 @@ void				appli_instruct(char *line, t_list **lista, t_list **listb);
 int					check_sort(t_list *lista, t_list *listb);
 void				execute(char *s, t_list **a, t_list **b);
 void				debug_util(t_list *a, t_list *b);
+void				free_stack(t_list *list);
 #endif

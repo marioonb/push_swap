@@ -99,5 +99,7 @@ int			main(int ac, char **av)
 		dpf(1, ""PK"La liste est déja triée ---> "ST"");
 		affiche_list((lista));
 	}
+	free_stack(lista);
+	free_stack(listb);
 	return (0);
 }

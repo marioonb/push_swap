@@ -45,4 +45,5 @@ int					max_in_queue(t_list *b, int size, int *max);
 int					check_sort(t_list *lista, t_list *listb);
 int					check_min_and_max(char *s);
 int					check_int_type(char *s);
+void				free_stack(t_list *list);
 #endif

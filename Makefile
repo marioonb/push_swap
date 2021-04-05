@@ -31,7 +31,7 @@ OBJS = inverse_rotate.o lib.o push.o rotate.o swap.o lib.o  \
         linked_list_utils.o linked_list_tools.o parse_utils.o \
         algo_tools.o algo_for_five.o algo_for_three.o debug.o \
         algo_for_hundred.o algo_tools.o sort_list_b.o work_in_queue.o \
-        work_in_head.o
+        work_in_head.o checker_fct.o
 
 LIB = ./libft/libft.a
 

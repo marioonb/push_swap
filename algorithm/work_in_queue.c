@@ -30,7 +30,6 @@ static int	max_in_queue2(int *tab, int t, int *max)
 		}
 		i++;
 	}
-	free(tab);
 	if (DEBUG == 1)
 		dpf(1, "Partie 2 de la pile : position du max = %d --->", res);
 	return (res);
@@ -51,6 +50,7 @@ int			max_in_queue(t_list *b, int size, int *max)
 	}
 	tab = copy_in_tab(b);
 	size = max_in_queue2(tab, size2, max);
+	free(tab);
 	return (size);
 }
 
@@ -78,7 +78,6 @@ static int	find_element_bloc_in_queue2(int *tab, int nb, int *bloc, int t)
 		}
 		j++;
 	}
-	free(tab);
 	return (-1);
 }
 
@@ -101,5 +100,6 @@ int			find_element_bloc_in_queue(t_list *a, int nb, int *bloc)
 	}
 	tab = copy_in_tab(a);
 	compt = find_element_bloc_in_queue2(tab, nb, bloc, size - median);
+	free(tab);
 	return (compt);
 }
