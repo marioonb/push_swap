@@ -55,21 +55,21 @@ void		algo_for_five(t_list **lista, t_list **listb)
 	int		size;
 
 	i = 0;
+	if (DEBUG == 1)
+	{
+		dprintf(1, "-----------------------------------\n||   ALGORITHME POU");
+		dprintf(1, "R 5 NOMBRES   ||\n-----------------------------------\n\n");
+		dprintf(1, "Push sur b jusqu'a n'avoir que 3 elements dans A\n\n");
+	}
 	nb_min = search_min((*lista));
 	size = ft_lstsize((*lista));
-	while ((size > 3))
-	{
+	while ((size-- > 3))
 		execute("pb", lista, listb);
-		size--;
-	}
 	algo_for_three(lista, listb);
 	a = (*lista);
 	b = (*listb);
-	while ((*listb) != NULL && i < 10)
-	{
+	while ((*listb) != NULL && i++ < 10)
 		insert_int(lista, listb);
-		i++;
-	}
 	while ((*lista)->nb > nb_min)
 		execute("rra", lista, listb);
 }

@@ -41,12 +41,12 @@ all:    $(NAME_SW) $(NAME_CH)
 
 $(NAME_CH):
 		@make -C libft/ libft.a
-		gcc -c $(FLAGS) $(SRCS_CH)
+		#gcc -c $(FLAGS) $(SRCS_CH)
 		gcc $(FLAGS) $(SRCS_CH) $(LIB) checker_prog/checker.c -o $(NAME_CH)
 
 $(NAME_SW):
 		@make -C libft/ libft.a
-		gcc -c $(FLAGS) $(SRCS_SW)
+		#gcc -c $(FLAGS) $(SRCS_SW)
 		gcc $(FLAGS) $(SRCS_SW) $(LIB) push_swap_prog/push_swap.c -o $(NAME_SW)
 
 clean :
