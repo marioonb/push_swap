@@ -32,7 +32,7 @@ static int	max_in_queue2(int *tab, int t, int *max)
 	}
 	free(tab);
 	if (DEBUG == 1)
-		dprintf(1, "Partie 2 de la pile : position du max = %d --->", res);
+		dpf(1, "Partie 2 de la pile : position du max = %d --->", res);
 	return (res);
 }
 
@@ -69,8 +69,8 @@ static int	find_element_bloc_in_queue2(int *tab, int nb, int *bloc, int t)
 			{
 				if (DEBUG == 1)
 				{
-					dprintf(1, "l'element le plus proche contenu dans le bloc");
-					dprintf(1, "actuelle et dans la queue est %d\n", bloc[i]);
+					dpf(1, "L'element le plus proche contenu dans le bloc ");
+					dpf(1, "actuel et dans la queue est "BL"%d"ST"\n", bloc[i]);
 				}
 				return (j + 1);
 			}

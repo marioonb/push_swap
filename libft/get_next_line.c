@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*concatene(const char *s1, const char *s2, char *resultat)
+static char		*concatene(const char *s1, const char *s2, char *resultat)
 {
 	int			i;
 	int			j;
@@ -35,7 +35,7 @@ static char	*concatene(const char *s1, const char *s2, char *resultat)
 	return (chaine);
 }
 
-char	*ft_strjoinfree(char const *s1, char const *s2)
+char			*ft_strjoinfree(char const *s1, char const *s2)
 {
 	char		*res;
 
@@ -48,7 +48,7 @@ char	*ft_strjoinfree(char const *s1, char const *s2)
 	return (res);
 }
 
-void	*ft_toomuch_read(char *memory, int i)
+void			*ft_toomuch_read(char *memory, int i)
 {
 	char		*temp;
 	int			j;
@@ -77,7 +77,7 @@ void	*ft_toomuch_read(char *memory, int i)
 	return (memory);
 }
 
-char	*memorywork(char **line, char *memory)
+char			*memorywork(char **line, char *memory)
 {
 	int			i;
 
@@ -89,7 +89,7 @@ char	*memorywork(char **line, char *memory)
 	return (memory);
 }
 
-int	get_next_line(int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
 	static char	*memory;
 	char		*buf;
@@ -101,13 +101,6 @@ int	get_next_line(int fd, char **line)
 	if (!memory)
 		memory = (char *)ft_calloc(sizeof(char), 1);
 	buf = (char *)ft_calloc(sizeof(char), BUFFER_SIZE + 1);
-	//ret = read(fd, buf, BUFFER_SIZE); //
-	//while (!ft_strchr(buf, '\n') && (ret > 0)) //
-	//{
-	//	buf[ret] = '\0'; //
-	//	memory = ft_strjoinfree(memory, buf); //
-	//	ret = read(fd, buf, BUFFER_SIZE); //
-	//}
 	while (!ft_strchr(buf, '\n') && (ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[ret] = '\0';

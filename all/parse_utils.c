@@ -14,7 +14,7 @@
 
 static void	ft_error(void)
 {
-	dprintf(1, "Error\n");
+	dpf(1, "Error\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -22,18 +22,18 @@ int			check_min_and_max(char *s)
 {
 	if (*s == '-')
 	{
-		if (strlen(s) < 11)
+		if (ft_strlen(s) < 11)
 			return (1);
-		if (strncmp(s, INT_MIN_C, ft_strlen(s)) > 0)
+		if (ft_strncmp(s, INT_MIN_C, ft_strlen(s)) > 0)
 			return (0);
 	}
 	else
 	{
 		if (*s == '+')
 			s++;
-		if (strlen(s) < 10)
+		if (ft_strlen(s) < 10)
 			return (1);
-		if (strncmp(s, INT_MAX_C, ft_strlen(s)) > 0)
+		if (ft_strncmp(s, INT_MAX_C, ft_strlen(s)) > 0)
 			return (0);
 	}
 	return (1);
@@ -47,13 +47,13 @@ int			check_int_type(char *s)
 	if (ft_isnumber(s) != 1)
 	{
 		if (DEBUG == 1)
-			printf("element %s, is not an int\n", s);
+			dpf(1, "element %s, is not an int\n", s);
 		return (0);
 	}
 	if (!check_min_and_max(s))
 	{
 		if (DEBUG == 1)
-			printf("element %s, not between in int intervalle\n", s);
+			dpf(1, "element %s, not between in int intervalle\n", s);
 		return (0);
 	}
 	return (1);
@@ -65,7 +65,7 @@ void		check_error(char **tab)
 	int		j;
 
 	i = 1;
-	if (strcmp(tab[i++], "-v") == 0)
+	if (ft_strcmp(tab[i++], "-v") == 0)
 		g_debug_bonus = 1;
 	while (tab[i])
 	{
@@ -74,10 +74,10 @@ void		check_error(char **tab)
 		j = 1;
 		while (j < i)
 		{
-			if (atoi(tab[i]) == atoi(tab[j]))
+			if (ft_atoi(tab[i]) == ft_atoi(tab[j]))
 			{
 				if (DEBUG == 1)
-					printf("%d est en doublon\n", atoi(tab[i]));
+					dpf(1, "%d est en doublon\n", ft_atoi(tab[i]));
 				ft_error();
 			}
 			j++;
@@ -111,5 +111,5 @@ void		appli_instruct(char *line, t_list **lista, t_list **listb)
 	else if (ft_strcmp(line, "rrr") == 0)
 		invers_rotate_ab(lista, listb);
 	else
-		printf("Error\n");
+		dpf(1, "Error\n");
 }

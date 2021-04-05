@@ -22,7 +22,7 @@ void	swap(t_list **list, char c)
 	int	temp;
 
 	if (DEBUG == 1 || g_debug_bonus == 1)
-		dprintf(1, "---------- ***** SWAP_%c\n", c);
+		dpf(1, "---------- ***** SWAP_%c\n", c);
 	if (*list != NULL && (*list)->next != NULL)
 	{
 		temp = (*list)->nb;

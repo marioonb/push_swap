@@ -20,8 +20,8 @@ void		algo_for_three(t_list **l, t_list **lb)
 	a = (*l);
 	if (DEBUG == 1)
 	{
-		dprintf(1, "-----------------------------------\n||   ALGORITHME POU");
-		dprintf(1, "R 3 NOMBRES   ||\n-----------------------------------\n\n");
+		dpf(1, ""TK"--------------------------------\n||  ALGORITHME POU"ST"");
+		dpf(1, ""TK"R 3 NOMBRES ||\n--------------------------------"ST"\n\n");
 	}
 	while (check_sort_stack(l) != 1)
 	{

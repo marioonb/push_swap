@@ -13,26 +13,26 @@
 #include "../include/push_swap.h"
 #include "../include/all.h"
 
-static void	best_is_queue(t_list **a, t_list **b, int index, int debug)
+static void	best_is_queue(t_list **a, t_list **b, int ind, int deb)
 {
 	if (DEBUG == 1)
 	{
-		dprintf(1, "La valeur %d etant la plus grande, on la recupere", debug);
-		dprintf(1, " par le bas avec %d rotations a droite\n", index + 1);
+		dpf(1, "La valeur "BL"%d"ST" etant la plus grande, on la recupe", deb);
+		dpf(1, "re par le bas avec "GR"%d rotation(s)"ST" a droite\n", ind + 1);
 	}
-	while (index + 1 > 0)
+	while (ind + 1 > 0)
 	{
 		execute("rrb", a, b);
-		index--;
+		ind--;
 	}
 }
 
-static void	best_is_head(t_list **a, t_list **b, int index, int debug)
+static void	best_is_head(t_list **a, t_list **b, int index, int dbug)
 {
 	if (DEBUG == 1)
 	{
-		dprintf(1, "La valeur %d etant la plus grande, on le recupere", debug);
-		dprintf(1, " par le haut avec %d rotations a gauche\n", index);
+		dpf(1, "La valeur "BL"%d"ST" etant la plus grande, on la recupe", dbug);
+		dpf(1, "re par le haut avec "GR"%d rotation(s)"ST" a gauche\n", index);
 	}
 	while (index > 0)
 	{
@@ -54,18 +54,18 @@ void		sort_b_for_end(t_list **a, t_list **b)
 		size = ft_lstsize((*b));
 		head_index = max_in_head((*b), size, &max_head);
 		if (DEBUG == 1)
-			dprintf(1, " C'est %d\n", max_head);
+			dpf(1, " C'est %d\n", max_head);
 		queue_index = max_in_queue((*b), size, &max_queue);
 		if (DEBUG == 1)
-			dprintf(1, " C'est %d\n", max_queue);
+			dpf(1, " C'est %d\n", max_queue);
 		if (max_head < max_queue)
 			best_is_queue(a, b, queue_index, max_queue);
 		else
 			best_is_head(a, b, head_index, max_head);
 		if (DEBUG == 1)
-			dprintf(1, "une fois a sa place, on push l'element sur a\n");
+			dpf(1, "Une fois a sa place, on push l'element sur a\n");
 		execute("pa", a, b);
 	}
 	if (DEBUG == 1)
-		dprintf(1, "la pile b est vide... et la pile a est triée..\n\n");
+		dpf(1, "la pile b est vide... et la pile a est triée..\n\n");
 }

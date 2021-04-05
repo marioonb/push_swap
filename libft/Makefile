@@ -13,14 +13,14 @@
 NAME = libft.a
 
 SRC = ft_strlen.c ft_memset.c ft_atoi.c ft_isdigit.c ft_strncmp.c ft_strchr.c \
-ft_isalpha.c ft_strdup.c ft_memcpy.c ft_bzero.c  ft_strtrim_char.c \
+ft_isalpha.c ft_strdup.c ft_memcpy.c ft_bzero.c  \
 ft_calloc.c get_next_line.c ft_itoa_base.c ft_strstr.c ft_strncpy.c \
 ft_strlcpy.c ft_strlcat.c ft_strjoin.c ft_itoa.c ft_strnstr.c ft_split.c \
-ft_substr.c ft_strtrim.c ft_atoi.c ft_isalpha.c ft_isdigit.c ft_itoa.c ft_strrchr.c \
+ft_substr.c ft_strtrim.c ft_atoi.c ft_isalpha.c ft_isdigit.c ft_strrchr.c \
 ft_putchar.c ft_putstr.c ft_strcpy.c ft_isnumber.c ft_power.c mini_printf.c \
-ft_putchar_fd.c ft_putstr_fd.c ft_isalnum.c mini_printf_fd.c ft_alloc.c \
+ft_putchar_fd.c ft_putstr_fd.c ft_isalnum.c mini_printf_fd.c \
 ft_read_tab_char.c duplicate_tab_char.c free_tab_char.c lenght_double_tab.c ft_strcmp.c \
-ft_read_tab_int.c \
+ft_read_tab_int.c dpf.c\
 
 BONUS = $(SRC) ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c\
 ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c \

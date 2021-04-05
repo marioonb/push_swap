@@ -24,13 +24,10 @@ int		*copy_in_tab(t_list *a)
 	i = size - 1;
 	while (i >= 0)
 	{
-		//dprintf(1, "l element a mettre dans le tableau est %d\n", a->nb);
 		tab[i] = a->nb;
-		//dprintf(1, "tab de size est a %d\n", tab[i]);
 		a = a->next;
 		i--;
 	}
-	//affiche_bloc(tab, size);
 	return (tab);
 }
 
@@ -47,7 +44,6 @@ int		search_next_min(t_list *list, int index)
 			min = list->nb;
 		list = list->next;
 	}
-	//printf("les next min trouvé est %d\n", min);
 	return (min);
 }
 
@@ -80,14 +76,11 @@ int		search_min(t_list *list)
 
 	min = list->nb;
 	i = 0;
-	//if (!list)
-	//	return (0);
 	while (list)
 	{
 		if (list->nb < min)
 			min = list->nb;
 		list = list->next;
 	}
-	//dprintf(1, "le nombre minimin cest %d ", min);
 	return (min);
 }

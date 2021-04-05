@@ -20,11 +20,9 @@
 
 # define BUFFER_SIZE 200
 
-
 /*
 ** LIBFT
 */
-
 
 int			ft_atoi(const char *str);
 void		ft_bzero(void *s, size_t n);
@@ -74,6 +72,7 @@ char		*memorywork(char **line, char *memory);
 int			get_next_line(int fd, char **line);
 char		*ft_strstr(char *str, char *to_find);
 int			ft_strcmp(char *name, char *value);
+
 /*
 ** PERSONNELLES
 */
@@ -84,7 +83,7 @@ char		*ft_alloc_char(int size);
 float		ft_power(float nb, int power);
 int			mini_printf(const char *s, ...);
 int			mini_printf_fd(int fd, const char *s, ...);
-char		*ft_strtrim_char(char const *s1, char set);
+int			dpf(int fd, const char *s, ...);
 int			ft_isnumber(char *s);
 char		*ft_strjoinfree(char const *s1, char const *s2);
 int			ft_putchar_return(char c);

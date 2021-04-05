@@ -13,20 +13,16 @@
 #include "../include/push_swap.h"
 #include "../include/all.h"
 
-/*
-** 	else if ((*lb)->next && !is_min((*lb)->next->nb, a) &&
-** !is_max((*lb)->next->nb, a) &&
-** (*lb)->nb < (*lb)->next->nb)
-** execute("sb", lista, lb);
-** condition ajouté pour swaper dans le cas de 43612 et avoir 10 coups
-** au lieu de 13.
-*/
-
 static void	insert_int(t_list **lista, t_list **lb)
 {
 	t_list	*a;
 
 	a = (*lista);
+	if (DEBUG == 1)
+	{
+		dpf(1, "A est trié !!\nInsertion du 1er element de B, recherche meill");
+		dpf(1, "eur position dans A.....\nIl reste %d \n\n", ft_lstsize((*lb)));
+	}
 	if (is_min((*lb)->nb, a) && is_min((*lista)->nb, a))
 		execute("pa", lista, lb);
 	else if (is_max((*lb)->nb, a) && is_min((*lista)->nb, a))
@@ -48,8 +44,6 @@ static void	insert_int(t_list **lista, t_list **lb)
 
 void		algo_for_five(t_list **lista, t_list **listb)
 {
-	t_list	*a;
-	t_list	*b;
 	int		i;
 	int		nb_min;
 	int		size;
@@ -57,19 +51,21 @@ void		algo_for_five(t_list **lista, t_list **listb)
 	i = 0;
 	if (DEBUG == 1)
 	{
-		dprintf(1, "-----------------------------------\n||   ALGORITHME POU");
-		dprintf(1, "R 5 NOMBRES   ||\n-----------------------------------\n\n");
-		dprintf(1, "Push sur b jusqu'a n'avoir que 3 elements dans A\n\n");
+		dpf(1, ""TK"--------------------------------\n||  ALGORITHME POU"ST"");
+		dpf(1, ""TK"R 5 NOMBRES ||\n--------------------------------"ST"\n\n");
+		dpf(1, "Push sur b jusqu'a n'avoir que 3 elements dans A\n\n");
 	}
 	nb_min = search_min((*lista));
 	size = ft_lstsize((*lista));
 	while ((size-- > 3))
 		execute("pb", lista, listb);
 	algo_for_three(lista, listb);
-	a = (*lista);
-	b = (*listb);
 	while ((*listb) != NULL && i++ < 10)
 		insert_int(lista, listb);
+	if (DEBUG == 1 && (*lista)->nb > nb_min)
+		dpf(1, "Rotate jusqu'a ce que A soit du plus petit au plus grand\n");
 	while ((*lista)->nb > nb_min)
 		execute("rra", lista, listb);
+	if (DEBUG == 1)
+		dpf(1, "la pile b est vide... et la pile a est triée..\n\n");
 }

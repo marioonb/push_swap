@@ -22,7 +22,7 @@ void		push(t_list **list1, t_list **list2, char c)
 	int nb;
 
 	if (DEBUG == 1 || g_debug_bonus == 1)
-		dprintf(1, "---------- ***** PUSH_%c\n", c);
+		dpf(1, "---------- ***** PUSH_%c\n", c);
 	if (*list2)
 	{
 		nb = pop_pile(list2);

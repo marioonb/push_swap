@@ -16,26 +16,27 @@ void		affiche_list(t_list *list)
 {
 	while (list)
 	{
-		dprintf(1, " %d ", list->nb);
+		dpf(1, " %d ", list->nb);
 		list = list->next;
 	}
+	dpf(1, "\n\n");
 }
 
 void		affiche_2(t_list *list, t_list *l2)
 {
-	dprintf(1, "A = ");
+	dpf(1, "A = ");
 	while (list)
 	{
-		dprintf(1, " %d ", list->nb);
+		dpf(1, " %d ", list->nb);
 		list = list->next;
 	}
-	dprintf(1, "\nB = ");
+	dpf(1, "\nB = ");
 	while (l2)
 	{
-		dprintf(1, " %d ", l2->nb);
+		dpf(1, " %d ", l2->nb);
 		l2 = l2->next;
 	}
-	dprintf(1, "\n\n");
+	dpf(1, "\n\n");
 }
 
 void		create_list(t_list **list, char **av)
@@ -44,7 +45,7 @@ void		create_list(t_list **list, char **av)
 	t_list	*new;
 
 	i = 1;
-	if (strcmp(av[i], "-v") == 0)
+	if (ft_strcmp(av[i], "-v") == 0)
 		i++;
 	while (av[i])
 	{

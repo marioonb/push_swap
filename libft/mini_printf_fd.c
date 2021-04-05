@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_printf.c                                      :+:      :+:    :+:   */
+/*   mini_printf_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -59,7 +59,7 @@ static void	ft_printfrun(char *str, va_list *arg, int fd)
 	}
 }
 
-int	mini_printf_fd(int fd, const char *s, ...)
+int			mini_printf_fd(int fd, const char *s, ...)
 {
 	char	*str;
 	va_list	arg;

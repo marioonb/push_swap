@@ -36,7 +36,7 @@ int		max_in_head(t_list *b, int size, int *max)
 		i++;
 	}
 	if (DEBUG == 1)
-		dprintf(1, "Partie 1 de la pile : position du max = %d --->", res);
+		dpf(1, "Partie 1 de la pile : position du max = %d --->", res);
 	return (res);
 }
 
@@ -56,8 +56,8 @@ int		find_element_bloc_in_head(t_list *a, int nb, int *bloc)
 			{
 				if (DEBUG == 1)
 				{
-					dprintf(1, "l'element le plus proche contenu dans le bloc");
-					dprintf(1, "actuelle et dans la tête est %d\n", bloc[i]);
+					dpf(1, "L'element le plus proche contenu dans le bloc");
+					dpf(1, " actuel et dans la tête est "BL"%d"ST"\n", bloc[i]);
 				}
 				return (compt);
 			}

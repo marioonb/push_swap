@@ -23,7 +23,7 @@ void		invers_rotate(t_list **list, char c)
 	t_list	*new;
 
 	if (DEBUG == 1 || g_debug_bonus == 1)
-		printf("---------- ***** REVERSE_ROTATE_%c\n", c);
+		dpf(1, "---------- ***** REVERSE_ROTATE_%c\n", c);
 	new = (*list);
 	while (new && new->next && new->next->next)
 		new = new->next;

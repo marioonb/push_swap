@@ -43,7 +43,7 @@ int			check_sort_stack(t_list **lista)
 
 void		execute(char *s, t_list **a, t_list **b)
 {
-	dprintf(1, "%s\n", s);
+	dpf(1, "%s\n", s);
 	appli_instruct(s, a, b);
 	if (DEBUG == 1 || g_debug_bonus == 1)
 	{
@@ -56,6 +56,12 @@ void		find_type_sort(t_list **lista, t_list **listb)
 	int		size;
 
 	size = ft_lstsize(*lista);
+	if (DEBUG == 1 && size > 5)
+	{
+		dpf(1, ""TK"--------------------------------\n||   ALGO POUR GR"ST"");
+		dpf(1, ""TK"ANDE LISTE   ||\n--------------------------------"ST"\n\n");
+		dpf(1, ""IT"division des elements en 5 a 11 blocs"ST"\n\n");
+	}
 	if (size <= 3)
 		algo_for_three(lista, listb);
 	else if (size <= 5)
@@ -66,9 +72,9 @@ void		find_type_sort(t_list **lista, t_list **listb)
 		algo_for_hundred(lista, listb, size, 11);
 	if (DEBUG == 1 || g_debug_bonus == 1)
 	{
-		dprintf(1, "YOUPPI !! ---->");
+		dpf(1, ""GR"YOUPPI !! ---->"ST"");
 		affiche_list((*lista));
-		dprintf(1, "\n\n");
+		dpf(1, "\n\n");
 	}
 }
 
@@ -80,19 +86,22 @@ int			main(int ac, char **av)
 	char	*buffer;
 
 	(void)ac;
+	if (!av[1])
+		return (0);
 	i = 0;
-	g_debug_bonus = 0;
 	lista = NULL;
 	listb = NULL;
 	buffer = NULL;
 	check_error(av);
 	create_list(&lista, av);
 	if (DEBUG == 1 || g_debug_bonus == 1)
-	{
-		if (DEBUG == 1)
-			dprintf(1, "\nLes deux piles de depart sont : \n");
-		affiche_2(lista, listb);
-	}
+		debug_util(lista, listb);
 	if (!check_sort(lista, listb))
 		find_type_sort(&lista, &listb);
+	else if (DEBUG == 1 || g_debug_bonus == 1)
+	{
+		dpf(1, ""PK"La liste est déja triée ---> "ST"");
+		affiche_list((lista));
+	}
+	return (0);
 }

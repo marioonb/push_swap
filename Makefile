@@ -5,6 +5,7 @@ SRCS_SW=    all/linked_list_utils.c \
             all/push.c \
             all/rotate.c \
             all/swap.c \
+			all/debug.c \
             algorithm/algo_tools.c \
             algorithm/algo_for_five.c \
             algorithm/algo_for_three.c \
@@ -27,7 +28,7 @@ RM = rm -f
 
 OBJS = inverse_rotate.o lib.o push.o rotate.o swap.o lib.o  \
         linked_list_utils.o linked_list_tools.o parse_utils.o \
-        algo_tools.o algo_for_five.o algo_for_three.o \
+        algo_tools.o algo_for_five.o algo_for_three.o debug.o \
         algo_for_hundred.o algo_tools.o sort_list_b.o work_in_queue.o \
         work_in_head.o
 

@@ -23,7 +23,7 @@ void		rotate(t_list **list, char c)
 	t_list	*new;
 
 	if (DEBUG == 1 || g_debug_bonus == 1)
-		printf("---------- ***** ROTATE_%c\n", c);
+		dpf(1, "---------- ***** ROTATE_%c\n", c);
 	if ((*list) != NULL)
 	{
 		val = pop_pile(list);

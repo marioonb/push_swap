@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_printf.c                                      :+:      :+:    :+:   */
+/*   dpf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelorge <mbelorge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include <stdarg.h>
 #include "libft.h"
 
-static void	ft_conversiontype(char *str, va_list *arg)
+static void	ft_conversiontype(char *str, va_list *arg, int fd)
 {
 	char	c;
 	char	*s;
@@ -24,34 +24,34 @@ static void	ft_conversiontype(char *str, va_list *arg)
 	if (str[0] == 'c')
 	{
 		c = va_arg(*arg, int);
-		ft_putchar(c);
+		ft_putchar_fd(c, fd);
 	}
 	else if (str[0] == 's')
 	{
 		s = va_arg(*arg, char *);
 		if (s == NULL)
 			s = "(null)";
-		ft_putstr(s);
+		ft_putstr_fd(s, fd);
 	}
 	else if (str[0] == 'd')
 	{
 		num = va_arg(*arg, int);
 		n = ft_itoa(num);
-		ft_putstr(n);
+		ft_putstr_fd(n, fd);
 		free(s);
 	}
 }
 
-static void	ft_printfrun(char *str, va_list *arg)
+static void	ft_printfrun(char *str, va_list *arg, int fd)
 {
 	while (*str)
 	{
 		if (*str != '%')
-			ft_putchar(str[0]);
+			ft_putchar_fd(str[0], fd);
 		else
 		{
 			str++;
-			ft_conversiontype(&str[0], arg);
+			ft_conversiontype(&str[0], arg, fd);
 			while (!ft_isalpha(*str) && *str != '%')
 				str++;
 		}
@@ -59,7 +59,7 @@ static void	ft_printfrun(char *str, va_list *arg)
 	}
 }
 
-int			mini_printf(const char *s, ...)
+int			dpf(int fd, const char *s, ...)
 {
 	char	*str;
 	va_list	arg;
@@ -68,10 +68,10 @@ int			mini_printf(const char *s, ...)
 	va_start(arg, s);
 	if (ft_strchr(s, '%') == NULL)
 	{
-		ft_putstr(str);
+		ft_putstr_fd(str, fd);
 		return (0);
 	}
-	ft_printfrun(str, &arg);
+	ft_printfrun(str, &arg, fd);
 	va_end(arg);
 	return (0);
 }

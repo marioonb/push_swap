@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -13,9 +12,10 @@
 
 #include "libft.h"
 
-void ft_read_tab_int(int *bloc, int nb)
+void	ft_read_tab_int(int *bloc, int nb)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (i < nb)
 	{
