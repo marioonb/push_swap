@@ -12,7 +12,7 @@ SRCS_SW=    all/linked_list_utils.c \
             algorithm/algo_for_hundred.c \
             algorithm/sort_list_b.c \
             algorithm/work_in_queue.c \
-            algorithm/work_in_head.c
+            algorithm/work_in_head.c \
 
 SRCS_CH=    all/inverse_rotate.c \
             all/push.c \
@@ -21,6 +21,7 @@ SRCS_CH=    all/inverse_rotate.c \
             all/linked_list_tools.c \
             all/parse_utils.c \
             all/swap.c \
+            checker_prog/checker_fct.c \
 
 FLAGS = -Werror -Wextra -Wall -fsanitize=address -g
 
@@ -42,12 +43,12 @@ all:    $(NAME_SW) $(NAME_CH)
 
 $(NAME_CH):
 		@make -C libft/ libft.a
-		#gcc -c $(FLAGS) $(SRCS_CH)
+		gcc -c $(FLAGS) $(SRCS_CH)
 		gcc $(FLAGS) $(SRCS_CH) $(LIB) checker_prog/checker.c -o $(NAME_CH)
 
 $(NAME_SW):
 		@make -C libft/ libft.a
-		#gcc -c $(FLAGS) $(SRCS_SW)
+		gcc -c $(FLAGS) $(SRCS_SW)
 		gcc $(FLAGS) $(SRCS_SW) $(LIB) push_swap_prog/push_swap.c -o $(NAME_SW)
 
 clean :

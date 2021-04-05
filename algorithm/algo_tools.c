@@ -33,11 +33,9 @@ int		*copy_in_tab(t_list *a)
 
 int		search_next_min(t_list *list, int index)
 {
-	int	i;
 	int	min;
 
 	min = 2147483647;
-	i = 0;
 	while (list)
 	{
 		if (list->nb < min && list->nb > index)
@@ -71,11 +69,9 @@ int		is_max(int nb, t_list *list)
 
 int		search_min(t_list *list)
 {
-	int	i;
 	int	min;
 
 	min = list->nb;
-	i = 0;
 	while (list)
 	{
 		if (list->nb < min)

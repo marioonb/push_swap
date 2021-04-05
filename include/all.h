@@ -21,7 +21,6 @@
 # include <string.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "../libft/libft.h"
 # include <limits.h>
 
 # define INT_MAX_C "2147483647"

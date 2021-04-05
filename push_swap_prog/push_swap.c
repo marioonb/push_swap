@@ -80,18 +80,14 @@ void		find_type_sort(t_list **lista, t_list **listb)
 
 int			main(int ac, char **av)
 {
-	int		i;
 	t_list	*lista;
 	t_list	*listb;
-	char	*buffer;
 
 	(void)ac;
 	if (!av[1])
 		return (0);
-	i = 0;
 	lista = NULL;
 	listb = NULL;
-	buffer = NULL;
 	check_error(av);
 	create_list(&lista, av);
 	if (DEBUG == 1 || g_debug_bonus == 1)

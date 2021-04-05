@@ -41,9 +41,6 @@ int			check_min_and_max(char *s)
 
 int			check_int_type(char *s)
 {
-	int		d;
-
-	d = ft_atoi(s);
 	if (ft_isnumber(s) != 1)
 	{
 		if (DEBUG == 1)
