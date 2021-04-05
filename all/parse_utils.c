@@ -65,11 +65,8 @@ void		check_error(char **tab)
 	int		j;
 
 	i = 1;
-	if (strcmp(tab[i], "-v") == 0)
-	{
+	if (strcmp(tab[i++], "-v") == 0)
 		g_debug_bonus = 1;
-		i++;
-	}
 	while (tab[i])
 	{
 		if (check_int_type(tab[i]) != 1)
@@ -81,8 +78,7 @@ void		check_error(char **tab)
 			{
 				if (DEBUG == 1)
 					printf("%d est en doublon\n", atoi(tab[i]));
-				printf("Error");
-				exit(EXIT_FAILURE);
+				ft_error();
 			}
 			j++;
 		}

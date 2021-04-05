@@ -44,7 +44,7 @@ void		create_list(t_list **list, char **av)
 	t_list	*new;
 
 	i = 1;
-	if(strcmp(av[i], "-v") == 0)
+	if (strcmp(av[i], "-v") == 0)
 		i++;
 	while (av[i])
 	{

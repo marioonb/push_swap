@@ -19,7 +19,7 @@ void ft_read_tab_int(int *bloc, int nb)
 	i = 0;
 	while (i < nb)
 	{
-		mini_printf_fd(1, "[%d], ", bloc[i]);
+		mini_printf_fd(1, "[%d] ", bloc[i]);
 		i++;
 	}
 	mini_printf_fd(1, "\n");

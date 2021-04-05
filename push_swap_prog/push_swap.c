@@ -68,6 +68,7 @@ void		find_type_sort(t_list **lista, t_list **listb)
 	{
 		dprintf(1, "YOUPPI !! ---->");
 		affiche_list((*lista));
+		dprintf(1, "\n\n");
 	}
 }
 
@@ -88,15 +89,10 @@ int			main(int ac, char **av)
 	create_list(&lista, av);
 	if (DEBUG == 1 || g_debug_bonus == 1)
 	{
-		//dprintf(1, "\nLISTE AVANT DE DEPART \nA = ");
-		//affiche_list(lista);
-		//dprintf(1, "\nB = ");
-		//affiche_list(listb);
-		//dprintf(1, "\n");
+		if (DEBUG == 1)
+			dprintf(1, "\nLes deux piles de depart sont : \n");
 		affiche_2(lista, listb);
 	}
 	if (!check_sort(lista, listb))
 		find_type_sort(&lista, &listb);
-	//if (DEBUG == 1)
-	//	affiche_list(lista);
 }

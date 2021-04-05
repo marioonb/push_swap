@@ -31,6 +31,8 @@ static int	max_in_queue2(int *tab, int t, int *max)
 		i++;
 	}
 	free(tab);
+	if (DEBUG == 1)
+		dprintf(1, "Partie 2 de la pile : position du max = %d --->", res);
 	return (res);
 }
 
@@ -55,23 +57,26 @@ int			max_in_queue(t_list *b, int size, int *max)
 static int	find_element_bloc_in_queue2(int *tab, int nb, int *bloc, int t)
 {
 	int		i;
-	int		compt;
 	int		j;
 
 	j = 0;
-	compt = 1;
 	while (j < t)
 	{
 		i = 0;
 		while (i < nb)
 		{
-			//dprintf(1, "on compare %d et %d\n", tab[j], bloc[i]);
 			if (tab[j] == bloc[i])
-				return (compt);
+			{
+				if (DEBUG == 1)
+				{
+					dprintf(1, "l'element le plus proche contenu dans le bloc");
+					dprintf(1, "actuelle et dans la queue est %d\n", bloc[i]);
+				}
+				return (j + 1);
+			}
 			i++;
 		}
 		j++;
-		compt++;
 	}
 	free(tab);
 	return (-1);
@@ -94,7 +99,6 @@ int			find_element_bloc_in_queue(t_list *a, int nb, int *bloc)
 		a = a->next;
 		i++;
 	}
-	//affiche_list(a);
 	tab = copy_in_tab(a);
 	compt = find_element_bloc_in_queue2(tab, nb, bloc, size - median);
 	return (compt);

@@ -13,10 +13,13 @@
 #include "../include/push_swap.h"
 #include "../include/all.h"
 
-static void	best_is_queue(t_list **a, t_list **b, int index)
+static void	best_is_queue(t_list **a, t_list **b, int index, int debug)
 {
-	//if (DEBUG == 1)
-	//	dprintf(1, "le + grand elememt est dans queue, position %d\n", index);
+	if (DEBUG == 1)
+	{
+		dprintf(1, "La valeur %d etant la plus grande, on la recupere", debug);
+		dprintf(1, " par le bas avec %d rotations a droite\n", index + 1);
+	}
 	while (index + 1 > 0)
 	{
 		execute("rrb", a, b);
@@ -24,10 +27,13 @@ static void	best_is_queue(t_list **a, t_list **b, int index)
 	}
 }
 
-static void	best_is_head(t_list **a, t_list **b, int index)
+static void	best_is_head(t_list **a, t_list **b, int index, int debug)
 {
-	//if (DEBUG == 1)
-	//	dprintf(1, "le + grand elememt est dans tete, position %d\n", index);
+	if (DEBUG == 1)
+	{
+		dprintf(1, "La valeur %d etant la plus grande, on le recupere", debug);
+		dprintf(1, " par le haut avec %d rotations a gauche\n", index);
+	}
 	while (index > 0)
 	{
 		execute("rb", a, b);
@@ -47,19 +53,19 @@ void		sort_b_for_end(t_list **a, t_list **b)
 	{
 		size = ft_lstsize((*b));
 		head_index = max_in_head((*b), size, &max_head);
-		//if (DEBUG == 1)
-		//	dprintf(1, "element de head le plus grand est  %d\n", max_head);
+		if (DEBUG == 1)
+			dprintf(1, " C'est %d\n", max_head);
 		queue_index = max_in_queue((*b), size, &max_queue);
-		//if (DEBUG == 1)
-		//	dprintf(1, "element de queue le plus grand est %d\n", max_queue);
+		if (DEBUG == 1)
+			dprintf(1, " C'est %d\n", max_queue);
 		if (max_head < max_queue)
-			best_is_queue(a, b, queue_index);
+			best_is_queue(a, b, queue_index, max_queue);
 		else
-			best_is_head(a, b, head_index);
-		//if (DEBUG == 1)
-		//	affiche_2((*a), (*b));
+			best_is_head(a, b, head_index, max_head);
+		if (DEBUG == 1)
+			dprintf(1, "une fois a sa place, on push l'element sur a\n");
 		execute("pa", a, b);
-		//if (DEBUG == 1)
-		//	affiche_2((*a), (*b));
 	}
+	if (DEBUG == 1)
+		dprintf(1, "la pile b est vide... et la pile a est triée..\n\n");
 }

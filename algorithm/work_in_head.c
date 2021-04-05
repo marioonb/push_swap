@@ -25,8 +25,6 @@ int		max_in_head(t_list *b, int size, int *max)
 	if (size % 2 != 0)
 		size2++;
 	i = 0;
-	//if (DEBUG == 1)
-	//	dprintf(1, "dans head, size est a %d\n", size2);
 	while (i < size2 && b)
 	{
 		if (b->nb > *max)
@@ -37,6 +35,8 @@ int		max_in_head(t_list *b, int size, int *max)
 		b = b->next;
 		i++;
 	}
+	if (DEBUG == 1)
+		dprintf(1, "Partie 1 de la pile : position du max = %d --->", res);
 	return (res);
 }
 
@@ -52,9 +52,15 @@ int		find_element_bloc_in_head(t_list *a, int nb, int *bloc)
 		i = 0;
 		while (i < nb)
 		{
-			//dprintf(1, "on compare %d et %d\n", a->nb, bloc[i]);
 			if (a->nb == bloc[i])
+			{
+				if (DEBUG == 1)
+				{
+					dprintf(1, "l'element le plus proche contenu dans le bloc");
+					dprintf(1, "actuelle et dans la tête est %d\n", bloc[i]);
+				}
 				return (compt);
+			}
 			i++;
 		}
 		a = a->next;
