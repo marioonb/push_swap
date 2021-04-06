@@ -12,8 +12,10 @@
 
 #include "../include/all.h"
 
-static void	ft_error(void)
+static void	ft_error(char *s, char *val)
 {
+	if (DEBUG == 1)
+		dpf(1, ""RD"%s%s"ST"", val, s);
 	dpf(1, "Error\n");
 	exit(EXIT_FAILURE);
 }
@@ -39,21 +41,12 @@ int			check_min_and_max(char *s)
 	return (1);
 }
 
-int			check_int_type(char *s)
+void		check_int_type(char *s)
 {
 	if (ft_isnumber(s) != 1)
-	{
-		if (DEBUG == 1)
-			dpf(1, "element %s, is not an int\n", s);
-		return (0);
-	}
+		ft_error(" n'est pas un int\n", s);
 	if (!check_min_and_max(s))
-	{
-		if (DEBUG == 1)
-			dpf(1, "element %s, not between in int intervalle\n", s);
-		return (0);
-	}
-	return (1);
+		ft_error(" n'est pas compris entre un int min et un int max\n", s);
 }
 
 void		check_error(char **tab)
@@ -62,21 +55,20 @@ void		check_error(char **tab)
 	int		j;
 
 	i = 1;
-	if (ft_strcmp(tab[i++], "-v") == 0)
+	if (ft_strcmp(tab[i], "-v") == 0)
+	{
 		g_debug_bonus = 1;
+		tab++;
+		i++;
+	}
 	while (tab[i])
 	{
-		if (check_int_type(tab[i]) != 1)
-			ft_error();
+		check_int_type(tab[i]);
 		j = 1;
 		while (j < i)
 		{
 			if (ft_atoi(tab[i]) == ft_atoi(tab[j]))
-			{
-				if (DEBUG == 1)
-					dpf(1, "%d est en doublon\n", ft_atoi(tab[i]));
-				ft_error();
-			}
+				ft_error(" est en doublon\n", tab[i]);
 			j++;
 		}
 		i++;
