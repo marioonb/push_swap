@@ -59,7 +59,6 @@ void		check_error(char **tab)
 	{
 		g_debug_bonus = 1;
 		tab++;
-		i++;
 	}
 	while (tab[i])
 	{
